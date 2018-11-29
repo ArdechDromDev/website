@@ -1,0 +1,26 @@
+---
+layout: default
+title: Contact
+permalink: /contact.html
+---
+
+<h1>Nous contacter</h1>
+
+<form name="contact" method="POST" netlify>
+    <div class="form-group">
+        <label for="name">Nom</label>
+        <input type="text" id="name" name="name" class="form-control" required/>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-control" required/>
+    </div>
+    <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" class="form-control" rows="6" required></textarea>
+    </div>
+    <div data-netlify-recaptcha></div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    </div>
+</form>
