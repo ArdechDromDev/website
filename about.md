@@ -1,9 +1,7 @@
 ---
-layout: default
-title: About
+layout: single
+title: A propos
 ---
-# A propos
-
 Les communautés de développeurs Drôme-Ardéchois se fédèrent : ADD est né
 
 Issu de différents groupes de développeur existant dans la région (CARA Valence, Afup, meetup privas dev, communauté WP Valence), ADD se veut une synergie des initiatives autour des métiers du développement.
