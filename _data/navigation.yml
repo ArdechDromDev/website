@@ -4,5 +4,7 @@
   link: /about.html
 - name: Evenement
   link: /event.html
+- name: Adhésion
+  link: /subscription.html
 - name: Contact
   link: /contact.html
