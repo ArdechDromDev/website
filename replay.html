@@ -22,7 +22,7 @@ title: Replay
     $(function(){
         let apiKey = 'AIzaSyAFuQSuuh7Q6R7ruZQD60NyfwWudXp3oLg';
         let channelId = 'UCGeZ9KihmkrUc_Zq9EcDFUQ';
-        let entrypoint = 'https://www.googleapis.com/youtube/v3/search?key='+apiKey+'&channelId='+channelId+'&part=snippet,id&order=date&maxResults=20&type=video';
+        let entrypoint = 'https://www.googleapis.com/youtube/v3/search?key='+apiKey+'&channelId='+channelId+'&part=snippet,id&order=date&maxResults=21&type=video';
         $.get(entrypoint, (result) => {
             let $container = $('#videos');
             let htmlCard = window['card-template'].innerHTML;
