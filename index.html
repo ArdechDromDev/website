@@ -2,4 +2,101 @@
 layout: default
 title: Home
 ---
-<h1>{{ "Hello World!" | downcase }}</h1>
+<section class="home">
+    <div class="row">
+        <div class="col-12 carousel pt-5 pb-5">
+            <h1>{{ "Ardech'Drom Dev de l'Ardèche, de la Drôme et du Dev" }}</h1>
+            <p class="text-center mb-5 pl-3 pl-3">
+                <a href="/subscription.html" class="btn btn-success btn-lg">
+                    <i class="fas fa-money-bill-wave"></i>
+                    &nbsp;{{ "Adhérer en ligne" }}&nbsp;
+                    <i class="fas fa-money-bill-wave"></i>
+                </a>
+            </p>
+        </div>
+    </div>
+</section>
+<section class="pt-3 pb-3 container">
+    <div class="container">
+        <div class="row" id="meetups"></div>
+        <p class="text-right">
+            <a href="/blog.html" class="btn btn-info">Toutes nos événements</a>
+        </p>
+    </div>
+</section>
+<section class="pt-3 pb-3 ">
+    <div class="container">
+        <div class="row" id="videos"></div>
+        <p class="text-right">
+            <a href="/replay.html" class="btn btn-info">Toutes nos vidéos</a>
+        </p>
+    </div>
+</section>
+
+<script type="text/html" id="card-template">
+    <div class="col-md-4 col-sm-6 mb-3">
+        <div class="card">
+            <img width="100%" class="card-img-top" src="{image}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{title}</h5>
+                <p class="card-text">{description}</p>
+                <a href="{link}" target="_blank" class="btn btn-primary">Voir la video</a>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="meetup-template">
+    <div class="col-md-4 col-sm-6 mb-3">
+        <div class="card">
+            <img width="100%" class="card-img-top" src="{image}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{title}</h5>
+                <p class="card-text card-subtitle"><i class="far fa-clock"></i>&nbsp;{date}</p>
+                <p class="card-text">{description}</p>
+                <a href="{link}" target="_blank" class="btn btn-primary">Voir le Meetup</a>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script>
+    $(function () {
+        let apiKey = 'AIzaSyAFuQSuuh7Q6R7ruZQD60NyfwWudXp3oLg';
+        let channelId = 'UCGeZ9KihmkrUc_Zq9EcDFUQ';
+        let entrypoint = 'https://www.googleapis.com/youtube/v3/search?key=' + apiKey + '&channelId=' + channelId + '&part=snippet,id&order=date&maxResults=3&type=video';
+        $.get(entrypoint, (result) => {
+            let $container = $('#videos');
+            let htmlCard = window['card-template'].innerHTML;
+            $container.html('');
+            $.each(result.items, (key, item) => {
+                console.log(item);
+                $container.append(template(htmlCard, {
+                    'image': item.snippet.thumbnails.high.url,
+                    'title': item.snippet.title,
+                    'description': item.snippet.description,
+                    'link': 'https://www.youtube.com/watch?v=' + item.id.videoId
+                }));
+            });
+        });
+
+        let entrypointMeetup = 'https://api.meetup.com/Ardech-Drom-Dev/events?status=upcoming,past&page=3&desc=1&fields=featured_photo';
+        $.get(entrypointMeetup, (result) => {
+            console.log('meetup', result);
+            let $container = $('#meetups');
+            let htmlCard = window['meetup-template'].innerHTML;
+            $container.html('');
+            $.each(result, (key, item) => {
+                console.log(item);
+                $container.append(template(htmlCard, {
+                    'image': item.featured_photo.photo_link,
+                    'date': item.local_date,
+                    'title': item.name,
+                    'description': item.description,
+                    'link': item.link
+                }));
+            });
+        });
+
+    });
+</script>
