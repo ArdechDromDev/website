@@ -3,6 +3,6 @@
 - name: A propos
   link: /about.html
 - name: Evenement
-  link: /blog.html
+  link: /event.html
 - name: Contact
   link: /contact.html
