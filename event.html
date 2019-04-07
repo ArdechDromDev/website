@@ -2,11 +2,40 @@
 layout: single
 title: Les derniers événements
 ---
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-      <p>{{ post.excerpt }}</p>
-    </li>
-  {% endfor %}
-</ul>
+
+<script type="text/html" id="card-template">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <img width="100%" class="card-img-top" src="{image}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{title}</h5>
+                <p class="card-text">{description}</p>
+                <a href="{link}" target="_blank" class="btn btn-primary">Voir la video</a>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="row" id="videos"></div>
+
+<script>
+    $(function(){
+        let apiKey = 'xxx';
+        let channelId = 'UCGeZ9KihmkrUc_Zq9EcDFUQ';
+        let entrypoint = 'https://www.meetup.com/Ardech-Drom-Dev/events';
+        $.get(entrypoint, (result) => {
+            let $container = $('#videos');
+            let htmlCard = window['card-template'].innerHTML;
+            $container.html('');
+            $.each(result.items, (key, item) => {
+                console.log(item);
+                $container.append(template(htmlCard, {
+                    'image' : item.snippet.thumbnails.high.url,
+                    'title' : item.snippet.title,
+                    'description' : item.snippet.description,
+                    'link' : 'https://www.youtube.com/watch?v='+item.id.videoId
+                }));
+            });
+        });
+    });
+</script>
