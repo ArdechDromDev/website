@@ -3,39 +3,100 @@ layout: single
 title: Les derniers événements
 ---
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <script type="text/html" id="card-template">
     <div class="col-md-4 mb-3">
         <div class="card">
             <img width="100%" class="card-img-top" src="{image}" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">{title}</h5>
+                <h5 class="card-title">{title} @{location}</h5>
                 <p class="card-text">{description}</p>
-                <a href="{link}" target="_blank" class="btn btn-primary">Voir la video</a>
+                <a href="{link}" target="_blank" class="btn btn-primary">S'inscrire à l'événement</a>
             </div>
         </div>
     </div>
 </script>
 
-<div class="row" id="videos"></div>
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    var extractToken = function(hash) {
+      var match = hash.match(/access_token=([\w-]+)/);
+      return !!match && match[1];
+    };
 
-<script>
-    $(function(){
-        let apiKey = 'xxx';
-        let channelId = 'UCGeZ9KihmkrUc_Zq9EcDFUQ';
-        let entrypoint = 'https://www.meetup.com/Ardech-Drom-Dev/events';
-        $.get(entrypoint, (result) => {
-            let $container = $('#videos');
+    let CLIENT_ID = 'vap98vi1nlp8ld03knpvfd0532';
+    let AUTHORIZATION_ENDPOINT = "https://secure.meetup.com/oauth2/authorize";
+    let RESOURCE_ENDPOINT = 'https://www.meetup.com/Ardech-Drom-Dev/events';
+    let API_MEETUP = 'https://api.meetup.com/Ardech-Drom-Dev/';
+    let REDIRECT_URI = 'https://www.ardechdromdev.org/event.html';
+    let RESOURCE_OPEN_EVENTS = API_MEETUP + '2/open_events';
+    let authUrl = AUTHORIZATION_ENDPOINT + 
+        "?response_type=token" +
+        "&client_id="    + CLIENT_ID +
+        "&redirect_uri=" + REDIRECT_URI;
+
+    var token = extractToken(document.location.hash);
+
+    if (token) {
+
+      $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: RESOURCE_OPEN_EVENTS
+        , beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', "OAuth " + token);
+            xhr.setRequestHeader('Accept',        "application/json");
+          }
+        , success: function (response) {
+            console.log("connecté");
             let htmlCard = window['card-template'].innerHTML;
             $container.html('');
-            $.each(result.items, (key, item) => {
+            if (response) {
+              container.text(response.username);
+            } else {
+              container.text("An error occurred.");
+            }
+            console.log(response);
+            $.each(response.items, (key, item) => {
                 console.log(item);
                 $container.append(template(htmlCard, {
-                    'image' : item.snippet.thumbnails.high.url,
-                    'title' : item.snippet.title,
-                    'description' : item.snippet.description,
-                    'link' : 'https://www.youtube.com/watch?v='+item.id.videoId
+                    'location' : item.venue.city,
+                    'title' : item.name,
+                    'description' : item.description,
+                    'link' : item.event_url,
                 }));
             });
-        });
-    });
+          }
+      });
+    } else {
+      $('div.authenticate').show();
+
+      $("a.connect").attr("href", authUrl);
+    }
+  });
+
 </script>
+
+
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+
+<div class="authenticate hidden">
+  <a class="connect" href="">Connect</a>
+</div>
+
+<div class="authenticated hidden">
+  <p>
+    You are using token
+    <span class="token">[no token]</span>.
+  </p>
+
+  <p>
+    Your SoundCloud username is
+    <span class="user">[no username]</span>.
+  </p>
+</div>
