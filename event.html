@@ -1,0 +1,69 @@
+---
+layout: single
+title: Les derniers événements
+---
+
+<script type="text/html" id="card-template">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <img width="100%" class="card-img-top" src="{image}" alt="Card image cap">
+            <div class="card-body">
+                <!-- <h5 class="card-title">{title}</h5> PAS BESOIN, DEJA DANS L'IMAGE -->
+                <p class="card-text">{description}</p>
+                <a href="{link}" target="_blank" class="btn btn-primary">S'inscrire à l'événement</a>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="row" id="meeting"></div>
+
+<script type="text/javascript" charset="utf-8">
+function fetchEvents(url, cb, data) {
+    if(!data) data = [];
+    
+    $.ajax({
+        dataType:'jsonp',
+        method:'get',
+        url:url,
+        success:function(result) {
+            console.log('back with ' + result.data.length +' results');
+            console.dir(result);
+            //add to data
+            data.push.apply(data, result.data);
+            if(result.meta.next_link) {
+                var nextUrl = result.meta.next_link;
+                fetchEvents(nextUrl, cb, data);
+            } else {
+                cb(data);   
+            }
+        }
+    }); 
+    
+}
+
+$(document).ready(function() {
+    
+    var $results = $("#results");
+
+    $results.html("<p>Recherche des meetups .</p>");
+
+    fetchEvents("https://api.meetup.com/Ardech-Drom-Dev/events?&fields=featured_photo&sign=true&photo-host=public&page=20", function(res) {
+
+        let $container = $('#meeting');
+        let htmlCard = window['card-template'].innerHTML;
+        $container.html('');
+        console.log(res);
+        $.each(res, (key, item) => {
+            $container.append(template(htmlCard, {
+                //'location' : item.venue.name,
+                //'title' : item.name,
+                'description' : item.description,
+                'link' : item.link,
+                'image' : item.featured_photo.photo_link,
+            }));
+        });
+    });
+});
+
+</script>
