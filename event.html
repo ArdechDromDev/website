@@ -3,8 +3,6 @@ layout: single
 title: Les derniers événements
 ---
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
 <script type="text/html" id="card-template">
     <div class="col-md-4 mb-3">
         <div class="card">
@@ -18,85 +16,54 @@ title: Les derniers événements
     </div>
 </script>
 
+<div class="row" id="meeting"></div>
+
 <script type="text/javascript" charset="utf-8">
-  $(function () {
-    var extractToken = function(hash) {
-      var match = hash.match(/access_token=([\w-]+)/);
-      return !!match && match[1];
-    };
-
-    let CLIENT_ID = 'vap98vi1nlp8ld03knpvfd0532';
-    let AUTHORIZATION_ENDPOINT = "https://secure.meetup.com/oauth2/authorize";
-    let RESOURCE_ENDPOINT = 'https://www.meetup.com/Ardech-Drom-Dev/events';
-    let API_MEETUP = 'https://api.meetup.com/Ardech-Drom-Dev/';
-    let REDIRECT_URI = 'https://www.ardechdromdev.org/event.html';
-    let RESOURCE_OPEN_EVENTS = API_MEETUP + '2/open_events';
-    let authUrl = AUTHORIZATION_ENDPOINT + 
-        "?response_type=token" +
-        "&client_id="    + CLIENT_ID +
-        "&redirect_uri=" + REDIRECT_URI;
-
-    var token = extractToken(document.location.hash);
-
-    if (token) {
-
-      $.ajax({
-            type: "GET",
-            dataType: 'json',
-            url: RESOURCE_OPEN_EVENTS
-        , beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', "OAuth " + token);
-            xhr.setRequestHeader('Accept',        "application/json");
-          }
-        , success: function (response) {
-            console.log("connecté");
-            let htmlCard = window['card-template'].innerHTML;
-            $container.html('');
-            if (response) {
-              container.text(response.username);
+function fetchEvents(url, cb, data) {
+    if(!data) data = [];
+    
+    $.ajax({
+        dataType:'jsonp',
+        method:'get',
+        url:url,
+        success:function(result) {
+            console.log('back with ' + result.data.length +' results');
+            console.dir(result);
+            //add to data
+            data.push.apply(data, result.data);
+            if(result.meta.next_link) {
+                var nextUrl = result.meta.next_link;
+                fetchEvents(nextUrl, cb, data);
             } else {
-              container.text("An error occurred.");
+                cb(data);   
             }
-            console.log(response);
-            $.each(response.items, (key, item) => {
-                console.log(item);
-                $container.append(template(htmlCard, {
-                    'location' : item.venue.city,
-                    'title' : item.name,
-                    'description' : item.description,
-                    'link' : item.event_url,
-                }));
-            });
-          }
-      });
-    } else {
-      $('div.authenticate').show();
+        }
+    }); 
+    
+}
 
-      $("a.connect").attr("href", authUrl);
-    }
-  });
+$(document).ready(function() {
+    
+    var $results = $("#results");
+
+    $results.html("<p>Recherche des meetups .</p>");
+
+    fetchEvents("https://api.meetup.com/Ardech-Drom-Dev/events?&fields=featured_photo&sign=true&photo-host=public&page=20", function(res) {
+
+        let $container = $('#meeting');
+        let htmlCard = window['card-template'].innerHTML;
+        $container.html('');
+        console.log(res);
+        $.each(res, (key, item) => {
+            $container.append(template(htmlCard, {
+                'location' : item.venue.name,
+                'title' : item.name,
+                'description' : item.description,
+                'link' : item.event_url,
+                'image' : item.featured_photo.thumb_link,
+            }));
+        });
+    });
+});
 
 </script>
-
-
-<style>
-  .hidden {
-    display: none;
-  }
-</style>
-
-<div class="authenticate hidden">
-  <a class="connect" href="">Connect</a>
-</div>
-
-<div class="authenticated hidden">
-  <p>
-    You are using token
-    <span class="token">[no token]</span>.
-  </p>
-
-  <p>
-    Your SoundCloud username is
-    <span class="user">[no username]</span>.
-  </p>
-</div>
