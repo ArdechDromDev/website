@@ -8,7 +8,7 @@ title: Les derniers événements
         <div class="card">
             <img width="100%" class="card-img-top" src="{image}" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">{title} @{location}</h5>
+                <h5 class="card-title">{title}</h5>
                 <p class="card-text">{description}</p>
                 <a href="{link}" target="_blank" class="btn btn-primary">S'inscrire à l'événement</a>
             </div>
@@ -60,7 +60,7 @@ $(document).ready(function() {
                 'title' : item.name,
                 'description' : item.description,
                 'link' : item.event_url,
-                'image' : item.featured_photo.thumb_link,
+                'image' : item.featured_photo.photo_link,
             }));
         });
     });
