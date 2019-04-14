@@ -37,19 +37,20 @@ title: Les derniers événements
 <script type="text/javascript">
 
 $(document).ready(function() {
-    let meetupurl = "https://api.meetup.com";
-    let meetupgpinfo = "/Ardech-Drom-Dev?sign=true&photo-host=public";
+    var meetupurl = "https://api.meetup.com";
+    var meetupgpinfo = "/Ardech-Drom-Dev?sign=true&photo-host=public";
+    var meetupevents = "/Ardech-Drom-Dev/events?fields=featured_photo&sign=true&photo-host=public&page=20";
+
     $.ajax({
         dataType: 'jsonp',
         method: 'get',
         url: meetupurl + meetupgpinfo,
-        success:function(result) {
+        success: function(result) {
             let $container = $('#meetings');
             let htmlCard = window['card-group'].innerHTML;
-            let customDescrition = 
-                "<p>Groupe " + result.data.category.name + "</p>" +
-                "<p>" + result.data.members + " Membres !" + "</p>" +
-                "<p>Prochain événement : " + result.data.next_event.name + "</p>";
+            let customDescrition = `<p>Groupe ${result.data.category.name}</p>
+                                    <p> ${result.data.members} Membres !</p>
+                                    <p>Prochain événement : ${result.data.next_event.name}</p>`;
             $container.append(template(htmlCard, {
                 'title': result.data.name,
                 'description': customDescrition,
@@ -57,24 +58,22 @@ $(document).ready(function() {
                 'image': "https://www.meetup.com/mu_static/fr-FR/logo--script.004ada05.svg",
                 'buttonlabel': "Rejoins-nous !",
             }));
-        }
-    });
-    let meetupevents = "/Ardech-Drom-Dev/events?fields=featured_photo&sign=true&photo-host=public&page=20";
-    $.ajax({
-        dataType: 'jsonp',
-        method: 'get',
-        url: meetupurl + meetupevents,
-        success:function(result) {
-            let $container = $('#meetings');
-            let htmlCard = window['card-meetings'].innerHTML;
-            $.each(result.data, (key, item) => {
-                $container.append(template(htmlCard, {
-                     'description': item.description,
-                     'link': item.link,
-                     'image': item.featured_photo.photo_link,
-                     'buttonlabel': "S'inscrire à l'événement",
-                }));
-            });
+            $.ajax({
+                dataType: 'jsonp',
+                method: 'get',
+                url: meetupurl + meetupevents,
+                success: function(result) {
+                    let htmlCard2 = window['card-meetings'].innerHTML;
+                    $.each(result.data, (key, item) => {
+                        $container.append(template(htmlCard2, {
+                             'description': item.description,
+                             'link': item.link,
+                             'image': item.featured_photo.photo_link,
+                             'buttonlabel': "S'inscrire à l'événement",
+                        }));
+                    });
+                }
+             });
         }
     });
 });
