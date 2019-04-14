@@ -32,14 +32,35 @@ title: Les derniers événements
     </div>
 </script>
 
-<div class="row" id="groupinfo"></div>
-
 <div class="row" id="meetings"></div>
 
 <script type="text/javascript">
 
 $(document).ready(function() {
     let meetupurl = "https://api.meetup.com";
+    let meetupgpinfo = "/Ardech-Drom-Dev?sign=true&photo-host=public";
+    $.ajax({
+        dataType: 'jsonp',
+        method: 'get',
+        url: meetupurl + meetupgpinfo,
+        success:function(result) {
+            let $container = $('#meetings');
+            let htmlCard = window['card-group'].innerHTML;
+            let customDescrition = 
+                "<ul>Notre groupe en bref" +
+                "<li />Type de groupe : " + result.data.category.name +
+                "<li />" + result.data.members + " Membres !" +
+                "<li />Prochain événement : " + result.data.next_event.name + 
+                "</ul>";
+            $container.append(template(htmlCard, {
+                'title': result.data.name,
+                'description': customDescrition,
+                'link': result.data.link,
+                'image': "https://www.meetup.com/mu_static/fr-FR/logo--script.004ada05.svg",
+                'buttonlabel': "Rejoins-nous !",
+            }));
+        }
+    });
     let meetupevents = "/Ardech-Drom-Dev/events?fields=featured_photo&sign=true&photo-host=public&page=20";
     $.ajax({
         dataType: 'jsonp',
@@ -56,23 +77,6 @@ $(document).ready(function() {
                      'buttonlabel': "S'inscrire à l'événement",
                 }));
             });
-        }
-    });
-    let meetupgpinfo = "/Ardech-Drom-Dev?sign=true&photo-host=public";
-    $.ajax({
-        dataType: 'jsonp',
-        method: 'get',
-        url: meetupurl + meetupgpinfo,
-        success:function(result) {
-            let $container = $('#groupinfo');
-            let htmlCard = window['card-group'].innerHTML;
-            $container.append(template(htmlCard, {
-                'title': result.data.name,
-                'description': result.data.description,
-                'link': result.data.link,
-                'image': result.data.group_photo.photo_link,
-                'buttonlabel': "Rejoins les <strong>" + result.data.members + "</strong> membres sur Meetup !",
-            }));
         }
     });
 });
