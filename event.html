@@ -47,11 +47,9 @@ $(document).ready(function() {
             let $container = $('#meetings');
             let htmlCard = window['card-group'].innerHTML;
             let customDescrition = 
-                "<ul>Notre groupe en bref" +
-                "<li />Type de groupe : " + result.data.category.name +
-                "<li />" + result.data.members + " Membres !" +
-                "<li />Prochain événement : " + result.data.next_event.name + 
-                "</ul>";
+                "<p>Groupe " + result.data.category.name + "</p>" +
+                "<p>" + result.data.members + " Membres !" + "</p>" +
+                "<p>Prochain événement : " + result.data.next_event.name + "</p>";
             $container.append(template(htmlCard, {
                 'title': result.data.name,
                 'description': customDescrition,
