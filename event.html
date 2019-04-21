@@ -3,66 +3,78 @@ layout: single
 title: Les derniers événements
 ---
 
-<script type="text/html" id="card-template">
+<script type="text/html" id="card-meetings">
     <div class="col-md-4 mb-3">
         <div class="card">
-            <img width="100%" class="card-img-top" src="{image}" alt="Card image cap">
+            <img width="100%" class="card-img-top" src="{image}" />
             <div class="card-body">
-                <!-- <h5 class="card-title">{title}</h5> PAS BESOIN, DEJA DANS L'IMAGE -->
                 <p class="card-text">{description}</p>
-                <a href="{link}" target="_blank" class="btn btn-primary">S'inscrire à l'événement</a>
+                <a href="{link}" target="_blank" class="btn btn-primary">
+                {buttonlabel}
+                </a>
             </div>
         </div>
     </div>
 </script>
 
-<div class="row" id="meeting"></div>
+<script type="text/html" id="card-group">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <img width="100%" class="card-img-top" src="{image}" />
+            <div class="card-body">
+                <h5 class="card-title">{title}</h5>
+                <p class="card-text">{description}</p>
+                <a href="{link}" target="_blank" class="btn btn-primary">
+                {buttonlabel}
+                </a>
+            </div>
+        </div>
+    </div>
+</script>
 
-<script type="text/javascript" charset="utf-8">
-function fetchEvents(url, cb, data) {
-    if(!data) data = [];
-    
-    $.ajax({
-        dataType:'jsonp',
-        method:'get',
-        url:url,
-        success:function(result) {
-            console.log('back with ' + result.data.length +' results');
-            console.dir(result);
-            //add to data
-            data.push.apply(data, result.data);
-            if(result.meta.next_link) {
-                var nextUrl = result.meta.next_link;
-                fetchEvents(nextUrl, cb, data);
-            } else {
-                cb(data);   
-            }
-        }
-    }); 
-    
-}
+<div class="row" id="meetings"></div>
+
+<script type="text/javascript">
 
 $(document).ready(function() {
-    
-    var $results = $("#results");
+    var meetupurl = "https://api.meetup.com";
+    var meetupgpinfo = "/Ardech-Drom-Dev?sign=true&photo-host=public";
+    var meetupevents = "/Ardech-Drom-Dev/events?fields=featured_photo&sign=true&photo-host=public&page=20";
 
-    $results.html("<p>Recherche des meetups .</p>");
-
-    fetchEvents("https://api.meetup.com/Ardech-Drom-Dev/events?&fields=featured_photo&sign=true&photo-host=public&page=20", function(res) {
-
-        let $container = $('#meeting');
-        let htmlCard = window['card-template'].innerHTML;
-        $container.html('');
-        console.log(res);
-        $.each(res, (key, item) => {
+    $.ajax({
+        dataType: 'jsonp',
+        method: 'get',
+        url: meetupurl + meetupgpinfo,
+        success: function(result) {
+            let $container = $('#meetings');
+            let htmlCard = window['card-group'].innerHTML;
+            let customDescrition = `<p>Groupe ${result.data.category.name}</p>
+                                    <p> ${result.data.members} Membres !</p>
+                                    <p>Prochain événement : ${result.data.next_event.name}</p>`;
             $container.append(template(htmlCard, {
-                //'location' : item.venue.name,
-                //'title' : item.name,
-                'description' : item.description,
-                'link' : item.link,
-                'image' : item.featured_photo.photo_link,
+                'title': result.data.name,
+                'description': customDescrition,
+                'link': result.data.link,
+                'image': "https://www.meetup.com/mu_static/fr-FR/logo--script.004ada05.svg",
+                'buttonlabel': "Rejoins-nous !",
             }));
-        });
+            $.ajax({
+                dataType: 'jsonp',
+                method: 'get',
+                url: meetupurl + meetupevents,
+                success: function(result) {
+                    let htmlCard2 = window['card-meetings'].innerHTML;
+                    $.each(result.data, (key, item) => {
+                        $container.append(template(htmlCard2, {
+                             'description': item.description,
+                             'link': item.link,
+                             'image': item.featured_photo.photo_link,
+                             'buttonlabel': "S'inscrire à l'événement",
+                        }));
+                    });
+                }
+             });
+        }
     });
 });
 
