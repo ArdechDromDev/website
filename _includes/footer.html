@@ -1,0 +1,23 @@
+<footer id="footer">
+    <div class="container">
+        <aside class="row">
+            <article class="col-md-4">
+                <span class="footer-special-picto">add::</span>
+            </article>
+            <article class="col-md-4">
+                <h2>Suivez-nous</h2>
+                <ul>
+                    {% for link in site.data.socials-networks %}
+                    <li><a href="{{ link.url }}" target="_blank">{{ link.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </article>
+            <article class="col-md-4">
+                <h2>Contribuez au site</h2>
+                <p>Ce site est collaboratif, vous êtes libre de proposer des modifications et libre de
+                participer aux discussions visant à l'améliorer.</p>
+                <p><a href="https://github.com/ArdechDromDev/website" target="_blank"><i class="fab fa-github"></i> Rendez-vous sur Github</a></p>
+            </article>
+        </aside>
+    </div>
+</footer>

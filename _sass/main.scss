@@ -1,5 +1,6 @@
 @import "variables";
 @import "bootstrap_custom";
+@import "footer";
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,600');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,900');
 
@@ -58,7 +59,7 @@ header.navbar {
   }
 
   .post-info {
-    background: #bb00796b;
+    background: $footer-secondary-color;
     color: $special-highlight;
     overflow: hidden;
     padding: 1em;
@@ -67,5 +68,4 @@ header.navbar {
       margin:0;
     }
   }
-
 }
