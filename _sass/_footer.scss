@@ -1,0 +1,25 @@
+#footer{
+  @extend .text-monospace;
+  border-top: 1px solid #e2e6ea;
+  margin-top: $grid-gutter-width;
+
+  article{
+    padding: $grid-gutter-width;
+  }
+
+  .footer-special-picto{
+    font-size: 3em;
+    color: #e2e6ea;
+    font-weight: bold;
+    pointer-events: none;
+  }
+
+  h2{
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  li, p{
+    font-size: 0.9em;
+  }
+}
