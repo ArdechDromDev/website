@@ -1,0 +1,12 @@
+- name: Facebook
+  url: 'https://www.facebook.com/ardechdromdev/'
+- name: Twitter
+  url: 'https://twitter.com/ArdechDromDev'
+- name: Slack
+  url: 'https://join.slack.com/t/ardech-drom-dev/shared_invite/enQtNDE5MzQ1NzEwODA3LTRlMzcwNDJlN2M4ZWI1YzIyN2YyMzRkZjI0MGNhYjRhZTNjMDE2ZGQ2YjU0YmU2M2VlN2UwMjhkYmE2ZjkxOGM'
+- name: Meetup
+  url: 'https://www.meetup.com/fr-FR/Ardech-Drom-Dev/'
+- name: Youtube
+  url: 'https://www.youtube.com/channel/UCGeZ9KihmkrUc_Zq9EcDFUQ'
+- name: LinkedIn
+  url: 'https://www.linkedin.com/company/ardechdromdev/'
