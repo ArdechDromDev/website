@@ -6,3 +6,23 @@ url: "https://www.ardechdromdev.org"
 lang: fr
 twitter_username: ArdechDromDev
 timezone: Europe/Paris
+plugins:
+  - jekyll-feed
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - package.lock.json
+  - package.json
+  - webpack.config.js
+  - src
+  - .editorconfig
+  - .eslintignore
+  - .eslintrc.js

@@ -1,0 +1,50 @@
+{
+    "name": "ardechdromdev",
+    "version": "1.0.0",
+    "description": "Website of Ardech'Drom Dev association.",
+    "main": "index.js",
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development webpack",
+        "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+        "jekyll:watch": "bundle exec jekyll build --watch --incremental",
+        "jekyll:build": "bundle exec jekyll build",
+        "serve": "browser-sync start --config browser-sync.js",
+        "start": "npm run jekyll:watch & npm run serve",
+        "watch": "cross-env NODE_ENV=development webpack --watch"
+    },
+    "keywords": [
+        "jekyll",
+        "vue",
+        "ssg"
+    ],
+    "author": "Vincent Journel",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.18.0",
+        "vue": "^2.5.21"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.2.3",
+        "babel-loader": "^8.0.5",
+        "browser-sync": "^2.26.3",
+        "clean-webpack-plugin": "^1.0.0",
+        "cross-env": "^5.2.0",
+        "css-loader": "^2.1.0",
+        "eslint": "^5.11.1",
+        "eslint-config-standard": "^12.0.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-node": "^8.0.1",
+        "eslint-plugin-promise": "^4.0.1",
+        "eslint-plugin-standard": "^4.0.0",
+        "eslint-plugin-vue": "^5.1.0",
+        "html-webpack-plugin": "^3.2.0",
+        "node-sass": "^4.11.0",
+        "sass-loader": "^7.1.0",
+        "vue-loader": "^15.5.0",
+        "vue-style-loader": "^4.1.2",
+        "vue-template-compiler": "^2.5.21",
+        "webpack": "^4.28.3",
+        "webpack-cli": "^3.2.0"
+    }
+}
