@@ -18,14 +18,15 @@ header.navbar {
 
 .home{
     .carousel{
-        background: url(/assets/img/home-carousel.jpg) no-repeat center center transparent;
+        background: url(/assets/img/workshop-29-mai-2019.jpg) no-repeat center center transparent;
+        background-size:cover;
         width: 100%;
         h1{
             text-align: center;
             margin-top: 80px;
             margin-bottom: 80px;
             color: #ffffff;
-            text-shadow: 1px 1px 2px #8892BF;
+            font-weight: 900;
         }
     }
 }
@@ -68,4 +69,19 @@ header.navbar {
       margin:0;
     }
   }
+}
+
+.container-small {
+  max-width: 800px;
+  padding: 30px;
+  margin: 0 auto;
+}
+
+.presentation-text {
+  background: #ffffff;
+  box-shadow: 0 0 15px #00000012;
+  margin-top: -2em;
+  margin-bottom: 2em;
+  position: relative;
+  z-index: 999999;
 }
