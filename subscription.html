@@ -18,9 +18,7 @@ title: Pour adhérer à ADD
 <div id="error-message"></div>
 
 <script>
-  var stripe = Stripe('pk_live_K4eY1FxdwufKtlKQLChTTLtA00F8Ej6MSl', {
-    betas: ['checkout_beta_4']
-  });
+  var stripe = Stripe('pk_live_K4eY1FxdwufKtlKQLChTTLtA00F8Ej6MSl');
 
   var checkoutButton = document.getElementById('checkout-button');
   checkoutButton.addEventListener('click', function () {
@@ -28,10 +26,6 @@ title: Pour adhérer à ADD
     // them to Checkout.
     stripe.redirectToCheckout({
       items: [{sku: 'sku_EpteK6YAb7jdOH', quantity: 1}],
-
-      // Note that it is not guaranteed your customers will be redirected to this
-      // URL *100%* of the time, it's possible that they could e.g. close the
-      // tab between form submission and the redirect.
       successUrl: 'https://www.ardechdromdev.org/subscription-success.html',
       cancelUrl: 'https://www.ardechdromdev.org/subscription-canceled.html',
     })
