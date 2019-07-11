@@ -139,8 +139,9 @@ DEPENDENCIES
   bootstrap (~> 4.3.1)
   jekyll
   jekyll-feed
+  jekyll-sass-converter
   jekyll-seo-tag
   jekyll-sitemap
 
 BUNDLED WITH
-   2.0.1
+   2.0.2
