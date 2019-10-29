@@ -16,18 +16,16 @@ header.navbar {
   }
 }
 
-.home{
-    .carousel{
-        background: url(/assets/img/workshop-29-mai-2019.jpg) no-repeat center center transparent;
-        background-size:cover;
-        width: 100%;
-        h1{
-            text-align: center;
-            margin-top: 80px;
-            margin-bottom: 80px;
-            color: #ffffff;
-            font-weight: 900;
-        }
+.home {
+    background: url(/assets/img/home-carousel.jpg) no-repeat center;
+    background-size:cover;
+    color: white;
+    padding: 3em 0;
+
+    h1 {
+        font-weight: 900;
+        padding: 1em 0;
+        font-weight: 900;
     }
 }
 
@@ -40,7 +38,7 @@ header.navbar {
   overflow: hidden;
 
   h1 {
-    margin: 1em 0;
+    padding: 1em 0;
     font-weight: 900;
   }
 
@@ -69,19 +67,4 @@ header.navbar {
       margin:0;
     }
   }
-}
-
-.container-small {
-  max-width: 800px;
-  padding: 30px;
-  margin: 0 auto;
-}
-
-.presentation-text {
-  background: #ffffff;
-  box-shadow: 0 0 15px #00000012;
-  margin-top: -2em;
-  margin-bottom: 2em;
-  position: relative;
-  z-index: 999999;
 }
