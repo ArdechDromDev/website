@@ -1,12 +1,12 @@
-- name: Home
+- name: Accueil
   link: /
-- name: A propos
-  link: /about.html
+- name: À propos
+  link: /about
 - name: Replay
-  link: /replay.html
-- name: Evenement
-  link: /event.html
-- name: Adhésion
-  link: /subscription.html
+  link: /replay
+- name: Événements
+  link: /event
+- name: Adhérer
+  link: /subscription
 - name: Contact
-  link: /contact.html
+  link: /contact
