@@ -6,3 +6,6 @@ url: "https://www.ardechdromdev.org"
 lang: fr
 twitter_username: ArdechDromDev
 timezone: Europe/Paris
+sass:
+  sass_dir: _sass
+  style: compressed
