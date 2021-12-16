@@ -1,11 +1,11 @@
-<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+<header class="navbar navbar-expand-lg navbar-dark bg-dark py-4">
     <div class="container">
-        <a class="navbar-brand" href="/">{{ site.title }}</a>
+        <a class="navbar-brand" href="/" title="{{ site.title }}"><img src="/assets/img/add-logo-transparent.png" width="130px"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <nav class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+        <nav class="collapse navbar-collapse w-100 " id="navbarNav">
+            <ul class="navbar-nav ml-auto">
                 {% for item in site.data.navigation %}
                 <li class="nav-item {% if page.url == item.link %}active{% endif %}">
                     <a href="{{ item.link }}" class="nav-link">{{ item.name }}</a>

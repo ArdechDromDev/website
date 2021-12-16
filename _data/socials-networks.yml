@@ -1,12 +1,18 @@
 - name: Facebook
+  icon: fab fa-facebook
   url: 'https://www.facebook.com/ardechdromdev/'
 - name: Twitter
+  icon: fab fa-twitter-square
   url: 'https://twitter.com/ArdechDromDev'
 - name: Slack
+  icon: fab fa-slack
   url: 'https://join.slack.com/t/ardech-drom-dev/shared_invite/enQtNDE5MzQ1NzEwODA3LTY1MDNkN2Y3MzA0ODAwMTg1MzhkOTcwOTY4YTRkMWUxMzI0NWMyOTU0ZmYwNjhiOTMwOGE0ZDYyNmVkNTJkZWE'
 - name: Meetup
+  icon: fab fa-meetup
   url: 'https://www.meetup.com/fr-FR/Ardech-Drom-Dev/'
 - name: Youtube
+  icon: fab fa-youtube
   url: 'https://www.youtube.com/channel/UCGeZ9KihmkrUc_Zq9EcDFUQ'
 - name: LinkedIn
+  icon: fab fa-linkedin
   url: 'https://www.linkedin.com/company/ardechdromdev/'

@@ -8,7 +8,7 @@
                 <h2>Suivez-nous</h2>
                 <ul>
                     {% for link in site.data.socials-networks %}
-                    <li><a href="{{ link.url }}" target="_blank">{{ link.name }}</a></li>
+                    <li><i class="{{link.icon}} mr-1"></i> <a href="{{ link.url }}" target="_blank">{{ link.name }}</a></li>
                     {% endfor %}
                 </ul>
             </article>
