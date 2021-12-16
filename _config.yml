@@ -9,3 +9,6 @@ timezone: Europe/Paris
 sass:
   sass_dir: _sass
   style: compressed
+collections:
+    bbls:
+        image: true
