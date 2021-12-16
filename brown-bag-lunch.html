@@ -1,0 +1,76 @@
+---
+layout: single
+title: Nos interventions en entreprises
+---
+<script>
+    $(document).ready(function () {
+
+        elementsArray = document.querySelectorAll(".whatever");
+
+        elementsArray.forEach(function (elem) {
+
+            elem.addEventListener("click", function (e) {
+                //this function does stuff
+                elem_clicked = $(elem).data("id");
+                $('#sujet').val(elem_clicked);
+            });
+        });
+    });
+</script>
+<div class="row">
+    <div class="col-sm">
+        <h2>Nos sujets</h2>
+        <p>Un BBL ou Brown Bag Lunch est un moment d'échange autour d'un repas. En effet, certains de nos membres se
+            proposent de venir gratuitement dans votre entreprise pour présenter succintement un sujet qui interessent
+            vos développeurs en contrepartie d'un repas. Si cela vous intéresse alors contactez-nous !</p>
+    </div>
+</div>
+<div class="row">
+    {% for bbl in site.bbls %}
+    <div class="col-sm-4 p-2">
+        <div class="card h-100">
+            <img class="card-img-top-bbl" src="{{ bbl.image }}" alt="{{ bbl.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ bbl.title }} </h5>
+                <p class="card-text">{{ bbl.content | markdownify }}</p>
+
+            </div>
+            <div class="card-footer text-center">
+                <a href="#contact-form" data-id="{{ bbl.slug }}" class="btn btn-primary whatever">Ce sujet
+                    m'intéresse</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="row pt-4">
+    <div class="col-sm">
+        <h2 id="contact-form">Contactez nous pour un BBL</h2>
+        <form name="bbl" method="POST" netlify>
+            <div class="form-group">
+                <label for="sujet">Sujet</label>
+                <select id="sujet" name="sujet" class="form-control" required>
+                    {% for bbl in site.bbls %}
+                    <option value="{{ bbl.slug }}">{{ bbl.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" class="form-control" rows="6" required></textarea>
+            </div>
+            <div data-netlify-recaptcha></div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </div>
+        </form>
+    </div>
+</div>

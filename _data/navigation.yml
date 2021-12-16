@@ -2,11 +2,13 @@
   link: /
 - name: À propos
   link: /about.html
-- name: Nos vidéos
+- name: Vidéos
   link: /replay.html
 - name: Événements
   link: /event.html
-- name: Adhérer
+- name: Interventions en entreprise
+  link: /brown-bag-lunch.html
+- name: Nous soutenir
   link: /subscription.html
 - name: Contact
   link: /contact.html
