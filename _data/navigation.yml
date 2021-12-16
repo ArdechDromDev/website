@@ -1,12 +1,12 @@
 - name: Accueil
   link: /
 - name: À propos
-  link: /about
-- name: Replay
-  link: /replay
+  link: /about.html
+- name: Nos vidéos
+  link: /replay.html
 - name: Événements
-  link: /event
+  link: /event.html
 - name: Adhérer
-  link: /subscription
+  link: /subscription.html
 - name: Contact
-  link: /contact
+  link: /contact.html
