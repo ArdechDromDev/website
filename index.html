@@ -1,18 +1,18 @@
 ---
 layout: default
-title: Home
+title: Association de développeurs et développeuses en Drôme et Ardèche
 ---
 <section class="home">
     <div class="container">
         <h1>Ardèch'Drôm Dev</h1>
-        <p class="font-weight-bolder">La communautés de développeurs Drôme-Ardéchois</p>
+        <p class="font-weight-bolder">La communauté des développeurs et développeuses en Drôme & Ardèche</p>
         <p class="py-3">
             <a href="/subscription" class="btn btn-secondary btn-lg shadow-lg">
-                💰 Adhérer
+                <i class="fas fa-hands-helping mr-1"></i>Nous soutenir
             </a>
             <a href="https://www.meetup.com/fr-FR/Ardech-Drom-Dev/" targer="_blank"
-                class="btn btn-light btn-lg shadow-lg">
-                📅 Voir nos événements
+               class="btn btn-light btn-lg shadow-lg">
+                <i class="far fa-calendar-alt mr-1"></i> Voir nos événements
             </a>
         </p>
     </div>
@@ -20,27 +20,72 @@ title: Home
 
 <section class="py-5 border-bottom">
     <div class="container">
-        <h2>Qu’est-ce que ADD ?</h2>
+        <h2 class="text-center mb-4"><i class="fas fa-question"></i> Qu’est-ce que ADD ?</h2>
         <p>
-            Ardèch'Drôm Dev est une association loi de 1901 qui a pour but d’aider les professionnels du
+            Ardèch'Drôm Dev est une association loi de 1901 qui a pour but d’aider les professionnels, étudiants et plus
+            largement les acteurs du
             numérique (développement, infrastructure, marketing et communication, design,
             juridique, etc.) en offrant la possibilité d’échanger et de partager leur expérience.<br>
             L’association vise aussi à rendre visible et à promouvoir ces métiers sur le territoire.
         </p>
         <p>
-            Le champ d’activité de l’association concerne les départements de la Drôme et de l’Ardèche.
+            Le champ d’activité de l’association se situe autour de Valence et concerne les départements
+            de la Drôme et de l’Ardèche et propose différents formats : conférence, coding-dojo, atelier...
+        </p>
+        <p>
+            ADD propose également des vidéos sur sa chaîne YouTube afin de revoir des événements précédents.
         </p>
         <p>
             L’association est indépendante de tout mouvement politique, religieux, syndicaliste ou philosophique.
         </p>
     </div>
 </section>
+<section class="py-5">
+    <h2 class="text-center mb-4"><i class="far fa-images"></i> Nos conférences en images</h2>
+    <div class="container card-columns">
+        <div class="card">
+            <img class="card-img" src="https://pbs.twimg.com/media/ERKV4q3XsAYl_Wj?format=jpg&name=large"
+                 alt="Conférence Tensorflow, there is no spoon  par Tiffany Souterre">
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://pbs.twimg.com/media/EG8AT84WsAE5mBl?format=jpg&name=large"
+                 alt="Conférence Elixir">
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://pbs.twimg.com/media/EAyDGo0W4AA-Hzq?format=jpg&name=large"
+                 alt="Apéro d'été au château de Crussol">
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://pbs.twimg.com/media/D_nffLNWkAU6VBc?format=jpg&name=large"
+                 alt="Coding dojo au Campus Numérique">
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://pbs.twimg.com/media/D6tIWWNWwAAhtR1?format=jpg&name=large"
+                 alt="Coding Dojo à l'IUT de Valence">
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://pbs.twimg.com/media/D4S3m7VWwAEFgwb?format=jpg&name=large"
+                 alt="Coding dojo au Campus Numérique">
+        </div>
+        <div class="card">
+            <img class="card-img" src="https://pbs.twimg.com/media/D06oy8XXgAMASGG?format=jpg&name=medium"
+                 alt="Conférence ReactJS à Saint-Peray">
+        </div>
+
+        <div class="card">
+            <img class="card-img" src="https://pbs.twimg.com/media/DzOarQ3WoAEuQLy?format=jpg&name=large"
+                 alt="Présentation ADD par Matthieu">
+        </div>
+
+    </div>
+</section>
 <section class="py-5 border-bottom bg-light">
     <div class="container text-center">
-        <h2>Rejoignez-nous sur</h5>
+        <h2><i class="fas fa-link"></i> Rejoignez-nous sur</h5>
             <p>
                 {% for link in site.data.socials-networks %}
-                <a href="{{ link.url }}" target="_blank" class="btn btn-secondary btn-lg shadow m-3">🔗
+                <a href="{{ link.url }}" target="_blank" class="btn btn-secondary btn-lg shadow m-3"><i
+                    class="{{link.icon}} mr-1"></i>
                     {{ link.name }}</a>
                 {% endfor %}
             </p>
@@ -49,21 +94,41 @@ title: Home
 </section>
 <section class="py-5">
     <div class="container">
-        <h2>📺 Replay</h2>
+        <h2 class="mb-4"><i class="fab fa-youtube"></i> Revoir une conférence</h2>
         <div class="row" id="videos"></div>
-        <p class="text-right">
-            <a href="/replay.html" class="btn btn-secondary">📹 Toutes nos vidéos</a>
+        <p class="text-right mt-4">
+            <a href="/replay.html" class="btn btn-secondary"><i class="fas fa-video"></i> Toutes nos vidéos</a>
         </p>
     </div>
 </section>
 
+<section>
+    <div class="container">
+        <h2 class="mb-4"><i class="far fa-thumbs-up"></i> Ils nous soutiennent</h2>
+        <div class="row">
+            <div class="col">
+                <img src="https://www.iut-valence.fr/uas/iut-valence/LOGO/Logo_IUTValence_2020_RVB.png"
+                     class="img-fluid" alt="IUT Valence">
+            </div>
+            <div class="col">
+                <img src="/assets/img/logo-campus-transparent.png" class="img-fluid" alt="Campus numérique in the Alps">
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
 <script type="text/html" id="card-template">
     <div class="col-md-4 col-sm-6 mb-3">
-        <div class="card">
+        <div class="card h-100">
             <img width="100%" class="card-img-top" src="{image}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{title}</h5>
                 <p class="card-text">{description}</p>
+
+            </div>
+            <div class="card-footer text-center">
                 <a href="{link}" target="_blank" class="btn btn-primary">Voir la video</a>
             </div>
         </div>
