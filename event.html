@@ -8,6 +8,7 @@ title: Les derniers événements
         <div class="card h-100">
             <img width="100%" class="card-img-top" src="{image}" />
             <div class="card-body">
+                <p class="card-text"><strong>Le {date}</strong></p>
                 <p class="card-text">{description}</p>
 
             </div>
@@ -68,8 +69,17 @@ $(document).ready(function() {
                 success: function(result) {
                     let htmlCard2 = window['card-meetings'].innerHTML;
                     $.each(result.data, (key, item) => {
+                        let date_event = new Date(item.local_date+"T"+item.local_time);
+                        let date_event_str = date_event.toLocaleString("fr-FR", {
+                            month: 'long',
+                            day: '2-digit',
+                            year: 'numeric',
+                            weekday: 'long',
+                            hour: '2-digit'
+                        });
                         $container.append(template(htmlCard2, {
-                             'description': item.description,
+                             'date' : date_event_str,
+                             'description':  item.description,
                              'link': item.link,
                              'image': item.featured_photo.photo_link,
                              'buttonlabel': "S'inscrire à l'événement",
