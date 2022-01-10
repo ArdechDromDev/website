@@ -5,7 +5,7 @@ image:  /assets/img/bbls/elephant-carpaccio.png
 
 **Niveau:** tout public
 
-**Prérequis:**  savoir écrire du code (tout langage)
+**Prérequis:** 
 
 **Description:**
 
