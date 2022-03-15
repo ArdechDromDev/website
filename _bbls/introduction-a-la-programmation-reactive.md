@@ -14,6 +14,6 @@ Je vous montrerai aussi comment intégrer la programmation réactive dans du cod
 
 Enfin, nous pourrons discuter de la pertinence de la technologie, des pièges à éviter et de l'adoption dans vos projets.
 
-**Ce qui vous aurez appris:**
+**Ce que vous aurez appris:**
 
 À l'issue de cette présentation, vous serez capable de mettre en place un Proof of Concept dans votre base de code.

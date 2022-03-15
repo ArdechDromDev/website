@@ -13,7 +13,7 @@ L’idée, c’est de montrer en quelques minutes comment réaliser une batterie
 Si plutôt que de discuter, on essayait sur un exemple ?
 L'exemple sera en Java/Kotlin, mais la méthode est applicable à n'importe quel langage.
 
-**Ce qui vous aurez appris:**
+**Ce que vous aurez appris:**
 
 À l'issue de cette présentation, vous connaîtrez le concept de Golden-Master test.
 Vous serez capables d'utiliser la lib approvals pour en créer (ou d'en créer un en partant de 0).

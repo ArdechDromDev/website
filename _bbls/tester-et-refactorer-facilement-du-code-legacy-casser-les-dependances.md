@@ -13,7 +13,7 @@ L’idée, c’est de montrer quelques techniques pour refactorer du code legacy
 Si plutôt que de discuter, on essayait sur un exemple ?
 L'exemple sera en Java/Kotlin, mais la méthode est applicable à n'importe quel langage.
 
-**Ce qui vous aurez appris:**
+**Ce que vous aurez appris:**
 
 À l'issue de cette présentation, vous saurez comment casser les dépendances pour rendre du code testable.
 Et vous connaîtrez quelques trucs et astuces pour nettoyer rapidement du code illisible.

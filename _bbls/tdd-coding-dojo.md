@@ -14,7 +14,7 @@ mais dans la pratique, comment ça marche d'écrire des tests avant le code ?
 Si plutôt que de discuter, on essayait sur un exemple ?
 Et si c'était pas moi qui codait, mais vous ?
 
-**Ce qui vous aurez appris:**
+**Ce que vous aurez appris:**
 
 À l'issue de cette présentation, vous connaîtrez le principe de TDD.
 Et vous saurez comment faire un coding-dojo, pour vous entraîner en équipe.
