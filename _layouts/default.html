@@ -10,10 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
           function removeTags(str) {
-              if ((str===null) || (str===''))
+              if (str === null || str === '') {
                   return false;
-              else
-                  str = str.toString();
+              }
+
+              str = str.toString();
 
               // Regular expression to identify HTML tags in
               // the input string. Replacing the identified
