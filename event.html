@@ -80,9 +80,11 @@ $(document).ready(function() {
                             weekday: 'long',
                             hour: '2-digit'
                         });
+
+                        desc = removeTags(item.description.replace(/<p>/g,'').replace(/<\/p>/g,'\r\n\r\n').replace(/<br\/>/g,'\r\n\r\n'))
                         $container.append(template(htmlCard2, {
                              'date' : date_event_str,
-                             'description':  item.description,
+                             'description':  marked.parse(desc),
                              'link': item.link,
                              'image': item.featured_photo.photo_link,
                              'buttonlabel': "S'inscrire à l'événement",
