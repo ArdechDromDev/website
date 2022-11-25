@@ -18,7 +18,9 @@
               // Regular expression to identify HTML tags in
               // the input string. Replacing the identified
               // HTML tag with a null string.
-              return str.replace( /(<([^>]+)>)/ig, '');
+              const element = document.createElement("div");
+              element.innerHTML = str;
+              return element.innerText
           }
       function template(content, data){
         $.each(content.match(/\{(.*)\}/g), (item, slug) => {
