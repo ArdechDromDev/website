@@ -52,7 +52,7 @@ function buildRssItems(items) {
     .map((item) => {
       const hasText = item.description;
       const hasLink = item.link;
-      const description = item.description.replace(/<p>/g,'').replace(/<\/p>/g,'\r\n\r\n').replace(/<br\/>/g,'\r\n\r\n')
+      const description = item.description
 
       const title = item.name
       const eventDate =  new Date(item.time).toUTCString()
