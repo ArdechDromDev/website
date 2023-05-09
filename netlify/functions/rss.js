@@ -54,7 +54,8 @@ function buildRssItems(items) {
       const hasLink = item.link;
       const description = item.description
 
-      const title = item.name
+      // tricks fort strip html https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/
+      const title = item.name.replace(/(<([^>]+)>)/gi, "");
       const eventDate =  new Date(item.time).toUTCString()
 
 
@@ -93,3 +94,17 @@ exports.handler = async function (event, context) {
 
 
 
+async function rss() {
+    const rssFeed = `<?xml version="1.0"?>
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ardechdromdev.org</title>
+    <atom:link href="https://ardechdromdev.org/.netlify/functions/rss" rel="self" type="application/rss+xml" />
+    <link>https://ardechdromdev.org/</link>
+    <description>Evénements organisés par l'association Ardèch'Drôm'Dev </description>
+    ${buildRssItems(await getPosts())}
+  </channel>
+  </rss>`;
+    console.log(rssFeed)
+}
+rss()
