@@ -48,7 +48,6 @@ async function getPosts() {
 function buildRssItems(items) {
   return items
     .map((item) => {
-      const hasText = item.description;
       const hasLink = item.link;
       const description = item.description
 
