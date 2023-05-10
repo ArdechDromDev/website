@@ -46,8 +46,6 @@ async function getPosts() {
 
 
 function buildRssItems(items) {
-  const truncateLength = 44;
-
   return items
     .map((item) => {
       const hasText = item.description;
