@@ -48,11 +48,15 @@ async function getPosts() {
 function buildRssItems(items) {
   return items
     .map((item) => {
-      const hasLink = item.link;
-      const description = item.description
+      const escapeHtml = (string) => string.replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
 
-      // tricks fort strip html https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/
-      const title = item.name.replace(/(<([^>]+)>)/gi, "");
+      const hasLink = escapeHtml(item.link);
+      const description = escapeHtml(item.description)
+      const title = escapeHtml(item.name);
       const eventDate =  new Date(item.time).toUTCString()
 
 
