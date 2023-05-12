@@ -55,7 +55,7 @@ function buildRssItems(items) {
           .replace(/'/g, "&#39;");
 
       const hasLink = escapeHtml(item.link);
-      const description item.description
+      const description = item.description;
       const title = escapeHtml(item.name);
       const eventDate =  new Date(item.time).toUTCString()
 
