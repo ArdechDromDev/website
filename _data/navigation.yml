@@ -4,9 +4,7 @@
   link: /about.html
 - name: Vidéos
   link: /replay.html
-- name: Événements
-  link: /event.html
-  name: Emploi
+- name: Emploi
   link: /emploi.html
 - name: Interventions en entreprise
   link: /brown-bag-lunch.html
