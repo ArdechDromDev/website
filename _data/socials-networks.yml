@@ -8,7 +8,7 @@
   icon: fab fa-slack
   url: 'https://join.slack.com/t/ardech-drom-dev/shared_invite/enQtNDE5MzQ1NzEwODA3LTY1MDNkN2Y3MzA0ODAwMTg1MzhkOTcwOTY4YTRkMWUxMzI0NWMyOTU0ZmYwNjhiOTMwOGE0ZDYyNmVkNTJkZWE'
 - name: Adhérer (Asso Connect)
-  icon: fab fa-heart
+  icon: fab fa-connectdevelop
   url: 'https://ardech-drom-dev.assoconnect.com/collect/description/653112-x-adhesion-libre'
 - name: Youtube
   icon: fab fa-youtube
