@@ -15,12 +15,8 @@ description: Soutenez ADD en adhérant si vous êtes un particulier ou en devena
     Un petit clic ci-dessous vous offrira 1 an de plaisir et vous serez également informés par e-mail de tous nos événements (newsletter) !
 </p>
 
-<!-- Load Stripe.js on your website. -->
-<script src="https://js.stripe.com/v3"></script>
-
 <!-- Create a button that your customers click to complete their purchase. -->
-<button id="checkout-button" class="btn btn-primary" role="link">Adhérer 1 an pour 10 €</button>
-<div id="error-message"></div>
+<button id="checkout-button" class="btn btn-primary" onclick="window.location.href = 'https://ardech-drom-dev.assoconnect.com/collect/description/653098-f-pour-aider-l-association-ardech-drom-dev-a-organiser-des-evenements';">Adhérer</button>
 
 <h2 class="mt-4">
     Vous êtes une entreprise ? Pourquoi ne pas devenir sponsor ?
@@ -30,25 +26,4 @@ description: Soutenez ADD en adhérant si vous êtes un particulier ou en devena
     que nous puissions trouver ensemble, autour d'un café, une solution adaptée à vos besoins.
 </p>
 <a class="btn btn-primary" href="contact.html">Contactez-nous</a>
-<script>
-  var stripe = Stripe('pk_live_K4eY1FxdwufKtlKQLChTTLtA00F8Ej6MSl');
 
-  var checkoutButton = document.getElementById('checkout-button');
-  checkoutButton.addEventListener('click', function () {
-    // When the customer clicks on the button, redirect
-    // them to Checkout.
-    stripe.redirectToCheckout({
-      items: [{sku: 'sku_EpteK6YAb7jdOH', quantity: 1}],
-      successUrl: 'https://www.ardechdromdev.org/subscription-success.html',
-      cancelUrl: 'https://www.ardechdromdev.org/subscription-canceled.html',
-    })
-    .then(function (result) {
-      if (result.error) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, display the localized error message to your customer.
-        var displayError = document.getElementById('error-message');
-        displayError.textContent = result.error.message;
-      }
-    });
-  });
-</script>
